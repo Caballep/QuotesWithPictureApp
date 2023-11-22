@@ -1,0 +1,24 @@
+# Gradle files
+.gradle/
+/local.properties
+/.idea/caches/
+/.idea/libraries/
+/.idea/modules.xml
+/.idea/workspace.xml
+/.idea/navEditor.xml
+/.idea/assetWizardSettings.xml
+
+# macOS specific files
+.DS_Store
+
+# Android Studio specific files
+/captures/
+.externalNativeBuild/
+.cxx/
+local.properties
+
+# Build files
+/app/build/
+
+# Log files
+*.log
