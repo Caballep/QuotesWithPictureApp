@@ -1,4 +1,4 @@
-package com.josecaballero.quoteswithpicture.ui.theme
+package com.josecaballero.quoteswithpicture.core.ui.theme
 
 import androidx.compose.ui.graphics.Color
 
