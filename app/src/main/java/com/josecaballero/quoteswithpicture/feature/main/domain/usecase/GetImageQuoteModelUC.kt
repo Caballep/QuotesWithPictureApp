@@ -1,28 +1,46 @@
 package com.josecaballero.quoteswithpicture.feature.main.domain.usecase
 
 import com.josecaballero.quoteswithpicture.feature.main.domain.model.ImageQuoteModel
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.*
 import javax.inject.Inject
 import kotlin.random.Random
 
 class GetImageQuoteModelUC @Inject constructor() {
-    private lateinit var nextQuote: ImageQuoteModel
+
+    private var nextImageQuoteModel: ImageQuoteModel? = null
+    private var deferred: CompletableDeferred<Unit>? = CompletableDeferred()
+
     suspend operator fun invoke(): ImageQuoteModel {
-        // Always have an ImageQuoteModel object (nextQuote) in the cache
-        if (!::nextQuote.isInitialized) {
-            nextQuote = getNewImageQuoteModel()
+        if (nextImageQuoteModel == null) {
+            deferred?.let {
+                if (it.isActive) it.cancel()
+            }
+            updateNewImageQuoteModel()
         }
-        val quote = nextQuote
-        nextQuote = getNewImageQuoteModel()
-        return quote
+        val imageQuoteModel = nextImageQuoteModel
+        nextImageQuoteModel = null
+        updateNewImageQuoteModelAsync()
+        return imageQuoteModel!!
     }
 
-    //TODO: All of the following code is just temporal.
-    private fun getNewImageQuoteModel(): ImageQuoteModel {
-        val randomIndex = Random.nextInt(temporalList.size)
-        return temporalList[randomIndex]
+    private suspend fun updateNewImageQuoteModel() {
+        delay(2000)
+        val randomIndex = Random.nextInt(imageQuoteList.size)
+        nextImageQuoteModel = imageQuoteList[randomIndex]
     }
 
-    private val temporalList = listOf(
+    private suspend fun updateNewImageQuoteModelAsync() {
+        deferred?.let { it ->
+            CoroutineScope(Dispatchers.Default).launch {
+                updateNewImageQuoteModel()
+                it.complete(Unit)
+            }
+        }
+    }
+
+    private val imageQuoteList = listOf(
         ImageQuoteModel(
             quote = "This is a temporal quote",
             imageUrl = "https://wallpapercave.com/wp/0eMcvL2.jpg",
