@@ -12,6 +12,8 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.josecaballero.quoteswithpicture.core.ui.theme.QuotesWithPictureTheme
 import com.josecaballero.quoteswithpicture.feature.main.presentation.screen.landing.LandingScreen
+import com.josecaballero.quoteswithpicture.feature.main.presentation.shared.LoopingVerticalPagerExample
+import com.josecaballero.quoteswithpicture.feature.main.presentation.shared.VerticalViewPagerExample
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -26,6 +28,8 @@ class MainActivity : ComponentActivity() {
                     color = MaterialTheme.colorScheme.background
                 ) {
                     LandingScreen(viewModel = hiltViewModel())
+                    //VerticalViewPagerExample()
+                    //LoopingVerticalPagerExample()
                 }
             }
         }
