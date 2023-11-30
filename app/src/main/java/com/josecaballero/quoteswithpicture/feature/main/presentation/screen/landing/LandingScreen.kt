@@ -1,7 +1,6 @@
 package com.josecaballero.quoteswithpicture.feature.main.presentation.screen.landing
 
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
@@ -9,9 +8,7 @@ import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.runtime.State
 import androidx.compose.runtime.collectAsState
-import androidx.compose.runtime.rememberUpdatedState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -22,7 +19,6 @@ import coil.compose.rememberImagePainter
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil.annotation.ExperimentalCoilApi
-import com.google.android.material.snackbar.Snackbar
 import com.josecaballero.quoteswithpicture.R
 import com.josecaballero.quoteswithpicture.feature.main.presentation.screen.landing.viewdata.ImageQuoteViewData
 import com.josecaballero.quoteswithpicture.feature.main.presentation.shared.OutlinedText
@@ -100,16 +96,23 @@ fun DisplayImageQuote(
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             OutlinedText(
-                text = imageQuoteData.quote,
-                color = Color.Black,
-                outlineColor = Color.White,
+                text = imageQuoteData.quoteContent,
+                color = imageQuoteData.textColorB,
+                outlineColor = imageQuoteData.textColorA,
                 fontSize = 24.sp
             )
             Spacer(modifier = Modifier.size(20.dp))
             OutlinedText(
-                text = imageQuoteData.author,
-                color = Color.White,
-                outlineColor = Color.Gray,
+                text = imageQuoteData.quoteAuthor,
+                color = imageQuoteData.textColorA,
+                outlineColor = imageQuoteData.textColorB,
+                fontSize = 18.sp
+            )
+            Spacer(modifier = Modifier.size(20.dp))
+            OutlinedText(
+                text = "Photo by ${imageQuoteData.imagePhotographer}",
+                color = imageQuoteData.textColorA,
+                outlineColor = imageQuoteData.textColorB,
                 fontSize = 18.sp
             )
             Spacer(modifier = Modifier.size(20.dp))
