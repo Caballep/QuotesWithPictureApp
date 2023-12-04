@@ -1,7 +1,9 @@
 package com.josecaballero.quoteswithpicture.infrastructure.di.module
 
 import com.josecaballero.quoteswithpicture.feature.main.data.sources.remote.rest.Quotable.QuotableService
+import com.josecaballero.quoteswithpicture.feature.main.data.sources.remote.rest.pexels.PexelsRetrofitProvider
 import com.josecaballero.quoteswithpicture.feature.main.data.sources.remote.rest.pexels.PexelsService
+import com.josecaballero.quoteswithpicture.feature.main.data.sources.remote.rest.quotableio.QuotableRetrofitProvider
 import com.josecaballero.quoteswithpicture.infrastructure.di.PexelsRetrofitQualifier
 import com.josecaballero.quoteswithpicture.infrastructure.di.QuotableRetrofitQualifier
 import dagger.Module
@@ -10,12 +12,11 @@ import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
-import retrofit2.converter.gson.GsonConverterFactory
 import javax.inject.Singleton
 
 @Module
 @InstallIn(SingletonComponent::class)
-object NetworkModule {
+object RestModule {
 
     @Provides
     @Singleton
@@ -27,13 +28,8 @@ object NetworkModule {
     @PexelsRetrofitQualifier
     @Provides
     @Singleton
-    fun providePexelsRetrofit(okHttpClient: OkHttpClient): Retrofit {
-        return Retrofit.Builder()
-            .baseUrl("https://api.pexels.com/")
-            .client(okHttpClient)
-            .addConverterFactory(GsonConverterFactory.create())
-            .build()
-    }
+    fun providePexelsRetrofit(okHttpClient: OkHttpClient) =
+        PexelsRetrofitProvider.getRetrofit(okHttpClient)
 
     @Provides
     @Singleton
@@ -44,12 +40,8 @@ object NetworkModule {
     @QuotableRetrofitQualifier
     @Provides
     @Singleton
-    fun provideQuotableRetrofit(): Retrofit {
-        return Retrofit.Builder()
-            .baseUrl("https://api.quotable.io/")
-            .addConverterFactory(GsonConverterFactory.create())
-            .build()
-    }
+    fun provideQuotableRetrofit(okHttpClient: OkHttpClient): Retrofit =
+        QuotableRetrofitProvider.getRetrofit(okHttpClient = okHttpClient)
 
     @Provides
     @Singleton
