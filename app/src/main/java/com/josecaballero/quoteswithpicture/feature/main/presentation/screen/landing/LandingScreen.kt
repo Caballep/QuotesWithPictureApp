@@ -7,10 +7,11 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavController
 import com.josecaballero.quoteswithpicture.feature.main.presentation.screen.landing.composable.DisplayImageQuote
 
 @Composable
-fun LandingScreen(viewModel: LandingScreenVM) {
+fun LandingScreen(viewModel: LandingScreenVM, navController: NavController) {
     val imageQuoteState = viewModel.imageQuoteState.collectAsState().value
     val isImageQuoteSavedState = viewModel.isImageQuoteSavedState.collectAsState().value
 
@@ -23,7 +24,7 @@ fun LandingScreen(viewModel: LandingScreenVM) {
 
     when (imageQuoteState) {
         is LandingScreenVM.States.ImageQuote.Initial -> {
-            // Do nothing for the initial state
+
         }
 
         is LandingScreenVM.States.ImageQuote.Loading -> {

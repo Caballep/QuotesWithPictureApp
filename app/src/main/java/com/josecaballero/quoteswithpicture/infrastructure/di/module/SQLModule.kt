@@ -10,7 +10,6 @@ import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import javax.inject.Singleton
 
-
 @Module
 @InstallIn(SingletonComponent::class)
 class SQLModule {
@@ -20,7 +19,9 @@ class SQLModule {
     fun provideAppDatabase(@ApplicationContext context: Context): AppDatabase = AppDatabase.get(context)
 
     @Provides
-    fun provideUserDao(appDatabase: AppDatabase): ImageQuoteDao? {
+    @Singleton
+    fun provideImageQuoteDao(appDatabase: AppDatabase): ImageQuoteDao {
         return appDatabase.imageQuoteDao()
     }
+
 }

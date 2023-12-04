@@ -6,13 +6,25 @@ import com.josecaballero.quoteswithpicture.feature.main.domain.model.ImageQuoteM
 import java.util.Date
 
 @Entity
-data class ImageQuoteEntity (
+data class ImageQuoteEntity(
     @PrimaryKey(autoGenerate = true)
     val id: Long = 0,
     val quoteContent: String,
     val quoteAuthor: String,
     val imageUrl: String,
-    val imageOppositeColors: ImageQuoteModel.ImageOppositeColors,
+    val blackOrWhiteColor: String,
+    val color: String,
     val imagePhotographer: String,
-    val dateTime: Date
-)
+    val dateTime: Date = Date()
+) {
+    companion object {
+        fun from(imageQuoteModel: ImageQuoteModel): ImageQuoteEntity = ImageQuoteEntity(
+            quoteContent = imageQuoteModel.quoteContent,
+            quoteAuthor = imageQuoteModel.quoteAuthor,
+            imageUrl = imageQuoteModel.imageUrl,
+            blackOrWhiteColor = imageQuoteModel.imageOppositeColors.blackOrWhiteColor.colorText,
+            color = imageQuoteModel.imageOppositeColors.color.colorText,
+            imagePhotographer = imageQuoteModel.imagePhotographer
+        )
+    }
+}

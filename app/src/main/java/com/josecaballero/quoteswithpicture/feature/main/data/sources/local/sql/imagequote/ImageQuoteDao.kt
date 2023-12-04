@@ -9,11 +9,11 @@ import androidx.room.Query
 interface ImageQuoteDao {
 
     @Query("SELECT * FROM ImageQuoteEntity")
-    fun getAllImageQuotes(): List<ImageQuoteEntity>
+    suspend fun getAllImageQuotes(): List<ImageQuoteEntity>
 
     @Insert
-    fun insertImageQuote(imageQuoteEntity: ImageQuoteEntity)
+    suspend fun insertImageQuote(imageQuoteEntity: ImageQuoteEntity)
 
     @Delete
-    fun deleteImageQuote(imageQuoteEntity: ImageQuoteEntity)
+    suspend fun deleteImageQuote(imageQuoteEntity: ImageQuoteEntity)
 }
