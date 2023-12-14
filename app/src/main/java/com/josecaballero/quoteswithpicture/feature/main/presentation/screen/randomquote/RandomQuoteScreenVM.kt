@@ -15,7 +15,7 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class LandingScreenVM @Inject constructor(
+class RandomQuoteScreenVM @Inject constructor(
     private val getImageQuoteModelUC: GetImageQuoteModelUC,
     private val saveUnsaveImageQuoteUC: SaveUnsaveImageQuoteUC
 ) : ViewModel() {

@@ -3,19 +3,16 @@ package com.josecaballero.quoteswithpicture
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Surface
 import androidx.compose.ui.Modifier
-import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.compose.rememberNavController
 import com.josecaballero.quoteswithpicture.core.ui.theme.QuotesWithPictureTheme
-import com.josecaballero.quoteswithpicture.feature.main.presentation.screen.randomquote.RandomQuoteScreen
-import com.josecaballero.quoteswithpicture.feature.main.presentation.shared.BottomNavigationBar
+import com.josecaballero.quoteswithpicture.infrastructure.navigation.presentation.MainBottomNavigationBar
 import dagger.hilt.android.AndroidEntryPoint
 import androidx.compose.foundation.layout.padding
-
+import com.josecaballero.quoteswithpicture.infrastructure.navigation.MainNavigation
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
@@ -25,25 +22,14 @@ class MainActivity : ComponentActivity() {
         setContent {
             QuotesWithPictureTheme {
                 val navController = rememberNavController()
-                Surface(
-                    modifier = Modifier.fillMaxSize(),
-                ) {
-                    Surface(
-                        modifier = Modifier.fillMaxSize(),
-                    ) {
-                        Scaffold(
-                            bottomBar = { BottomNavigationBar() },
-                            content = { padding ->
-                                Surface(modifier =  Modifier.padding(padding)) {
-                                    RandomQuoteScreen(
-                                        viewModel = hiltViewModel(),
-                                        navController = navController
-                                    )
-                                }
-                            }
-                        )
+                Scaffold(
+                    bottomBar = { MainBottomNavigationBar(navController = navController) },
+                    content = { padding ->
+                        Surface(modifier = Modifier.padding(padding)) {
+                            MainNavigation(navController)
+                        }
                     }
-                }
+                )
             }
         }
     }

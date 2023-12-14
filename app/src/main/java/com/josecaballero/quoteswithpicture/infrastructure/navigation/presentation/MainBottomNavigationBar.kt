@@ -1,4 +1,4 @@
-package com.josecaballero.quoteswithpicture.feature.main.presentation.shared
+package com.josecaballero.quoteswithpicture.infrastructure.navigation.presentation
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Row
@@ -11,36 +11,28 @@ import androidx.compose.material3.NavigationBar
 import androidx.compose.material3.NavigationBarItem
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
-import androidx.compose.ui.tooling.preview.Preview
+import androidx.navigation.NavHostController
+import com.josecaballero.quoteswithpicture.infrastructure.navigation.Destinations
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.setValue
 
-val items = listOf(
-    BottomNavigation(
-        title = "Random",
-        icon = Icons.Rounded.Refresh,
-
-    ),
-
-    BottomNavigation(
-        title = "Saved",
-        icon = Icons.Rounded.Favorite
-    )
-)
-
-@Preview
 @Composable
-fun BottomNavigationBar() {
+fun MainBottomNavigationBar(navController: NavHostController) {
+    var selectedIndex by remember { mutableStateOf(0) }
     NavigationBar {
         Row(
             modifier = Modifier.background(MaterialTheme.colorScheme.inverseOnSurface)
         ) {
-
             items.forEachIndexed { index, item ->
                 NavigationBarItem(
-                    selected = index == 0,
+                    selected = index == selectedIndex,
                     onClick = {
-
+                        selectedIndex = index
+                        navController.navigate(item.destination)
                     },
                     icon = {
                         Icon(
@@ -57,12 +49,25 @@ fun BottomNavigationBar() {
                     }
                 )
             }
-
         }
     }
 }
 
+val items = listOf(
+    BottomNavigation(
+        title = "Random",
+        icon = Icons.Rounded.Refresh,
+        destination = Destinations.Main.RANDOM_QUOTE.route
+    ),
+    BottomNavigation(
+        title = "Saved",
+        icon = Icons.Rounded.Favorite,
+        destination = Destinations.Main.SAVED_QUOTES.route
+    )
+)
+
 data class BottomNavigation(
     val title: String,
-    val icon: ImageVector
+    val icon: ImageVector,
+    val destination: String
 )

@@ -10,12 +10,12 @@ import com.josecaballero.quoteswithpicture.feature.main.presentation.screen.save
 
 @Composable
 fun MainNavigation(navController: NavHostController) {
-    NavHost(navController = navController, startDestination = "landing") {
-        composable("landing") {
-            RandomQuoteScreen(viewModel = hiltViewModel(), navController = navController)
+    NavHost(navController = navController, startDestination = Destinations.Main.RANDOM_QUOTE.route) {
+        composable(Destinations.Main.RANDOM_QUOTE.route) {
+            RandomQuoteScreen(viewModel = hiltViewModel())
         }
-        composable("savedQuotes") {
-            SavedQuotesScreen(viewModel = hiltViewModel(), navController = navController)
+        composable(Destinations.Main.SAVED_QUOTES.route) {
+            SavedQuotesScreen(viewModel = hiltViewModel())
         }
     }
 }

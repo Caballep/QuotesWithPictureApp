@@ -11,38 +11,38 @@ import androidx.navigation.NavController
 import com.josecaballero.quoteswithpicture.feature.main.presentation.screen.randomquote.composable.DisplayImageQuote
 
 @Composable
-fun RandomQuoteScreen(viewModel: LandingScreenVM, navController: NavController) {
+fun RandomQuoteScreen(viewModel: RandomQuoteScreenVM) {
     val imageQuoteState = viewModel.imageQuoteState.collectAsState().value
     val isImageQuoteSavedState = viewModel.isImageQuoteSavedState.collectAsState().value
 
     val isImageQuoteSaved =
-        (isImageQuoteSavedState as LandingScreenVM.States.ImageQuoteSaved.Data).data
+        (isImageQuoteSavedState as RandomQuoteScreenVM.States.ImageQuoteSaved.Data).data
 
     LaunchedEffect(true) {
-        viewModel.handleEvent(LandingScreenVM.Events.ScreenInit)
+        viewModel.handleEvent(RandomQuoteScreenVM.Events.ScreenInit)
     }
 
     when (imageQuoteState) {
-        is LandingScreenVM.States.ImageQuote.Initial -> {
+        is RandomQuoteScreenVM.States.ImageQuote.Initial -> {
 
         }
 
-        is LandingScreenVM.States.ImageQuote.Loading -> {
+        is RandomQuoteScreenVM.States.ImageQuote.Loading -> {
             CircularProgressIndicator(
                 modifier = Modifier
                     .size(50.dp)
             )
         }
 
-        is LandingScreenVM.States.ImageQuote.Data -> {
+        is RandomQuoteScreenVM.States.ImageQuote.Data -> {
             DisplayImageQuote(
                 imageQuoteState.data,
                 isImageQuoteSaved,
                 onSaveClicked = {
-                    viewModel.handleEvent(LandingScreenVM.Events.SaveUnsave)
+                    viewModel.handleEvent(RandomQuoteScreenVM.Events.SaveUnsave)
                 },
                 onNextClicked = {
-                    viewModel.handleEvent(LandingScreenVM.Events.NextQuote)
+                    viewModel.handleEvent(RandomQuoteScreenVM.Events.NextQuote)
                 })
         }
     }
