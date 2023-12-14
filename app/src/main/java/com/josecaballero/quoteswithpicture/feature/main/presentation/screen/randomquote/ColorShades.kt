@@ -1,4 +1,4 @@
-package com.josecaballero.quoteswithpicture.feature.main.presentation.screen.landing
+package com.josecaballero.quoteswithpicture.feature.main.presentation.screen.randomquote
 
 import androidx.compose.ui.graphics.Color
 

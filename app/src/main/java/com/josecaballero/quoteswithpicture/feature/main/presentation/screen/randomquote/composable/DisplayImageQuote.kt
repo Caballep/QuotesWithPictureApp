@@ -1,4 +1,4 @@
-package com.josecaballero.quoteswithpicture.feature.main.presentation.screen.landing.composable
+package com.josecaballero.quoteswithpicture.feature.main.presentation.screen.randomquote.composable
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
@@ -16,7 +16,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil.annotation.ExperimentalCoilApi
 import com.josecaballero.quoteswithpicture.R
-import com.josecaballero.quoteswithpicture.feature.main.presentation.screen.landing.viewdata.ImageQuoteViewData
+import com.josecaballero.quoteswithpicture.feature.main.presentation.screen.randomquote.viewdata.ImageQuoteViewData
 import com.josecaballero.quoteswithpicture.feature.main.presentation.shared.OutlinedText
 
 @OptIn(ExperimentalCoilApi::class)

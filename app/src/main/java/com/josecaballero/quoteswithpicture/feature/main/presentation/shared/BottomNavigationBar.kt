@@ -18,7 +18,8 @@ import androidx.compose.ui.tooling.preview.Preview
 val items = listOf(
     BottomNavigation(
         title = "Random",
-        icon = Icons.Rounded.Refresh
+        icon = Icons.Rounded.Refresh,
+
     ),
 
     BottomNavigation(
@@ -38,7 +39,9 @@ fun BottomNavigationBar() {
             items.forEachIndexed { index, item ->
                 NavigationBarItem(
                     selected = index == 0,
-                    onClick = {},
+                    onClick = {
+
+                    },
                     icon = {
                         Icon(
                             imageVector = item.icon,

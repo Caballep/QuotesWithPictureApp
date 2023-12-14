@@ -1,4 +1,4 @@
-package com.josecaballero.quoteswithpicture.feature.main.presentation.screen.landing
+package com.josecaballero.quoteswithpicture.feature.main.presentation.screen.randomquote
 
 import androidx.compose.foundation.layout.size
 import androidx.compose.material3.CircularProgressIndicator
@@ -8,10 +8,10 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
-import com.josecaballero.quoteswithpicture.feature.main.presentation.screen.landing.composable.DisplayImageQuote
+import com.josecaballero.quoteswithpicture.feature.main.presentation.screen.randomquote.composable.DisplayImageQuote
 
 @Composable
-fun LandingScreen(viewModel: LandingScreenVM, navController: NavController) {
+fun RandomQuoteScreen(viewModel: LandingScreenVM, navController: NavController) {
     val imageQuoteState = viewModel.imageQuoteState.collectAsState().value
     val isImageQuoteSavedState = viewModel.isImageQuoteSavedState.collectAsState().value
 

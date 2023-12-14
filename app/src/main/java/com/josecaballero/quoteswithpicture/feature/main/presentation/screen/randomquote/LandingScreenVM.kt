@@ -1,4 +1,4 @@
-package com.josecaballero.quoteswithpicture.feature.main.presentation.screen.landing
+package com.josecaballero.quoteswithpicture.feature.main.presentation.screen.randomquote
 
 import androidx.lifecycle.ViewModel
 import com.josecaballero.quoteswithpicture.feature.main.domain.usecase.GetImageQuoteModelUC
@@ -7,7 +7,7 @@ import kotlinx.coroutines.Job
 import androidx.lifecycle.viewModelScope
 import com.josecaballero.quoteswithpicture.feature.main.domain.model.ImageQuoteModel
 import com.josecaballero.quoteswithpicture.feature.main.domain.usecase.SaveUnsaveImageQuoteUC
-import com.josecaballero.quoteswithpicture.feature.main.presentation.screen.landing.viewdata.ImageQuoteViewData
+import com.josecaballero.quoteswithpicture.feature.main.presentation.screen.randomquote.viewdata.ImageQuoteViewData
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow

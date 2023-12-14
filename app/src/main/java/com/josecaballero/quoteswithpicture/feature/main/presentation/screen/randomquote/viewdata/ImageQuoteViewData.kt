@@ -1,9 +1,9 @@
-package com.josecaballero.quoteswithpicture.feature.main.presentation.screen.landing.viewdata
+package com.josecaballero.quoteswithpicture.feature.main.presentation.screen.randomquote.viewdata
 
 import androidx.compose.ui.graphics.Color
 import com.josecaballero.quoteswithpicture.feature.main.domain.model.ImageQuoteModel
 import com.josecaballero.quoteswithpicture.feature.main.domain.model.enumerable.ImageQuoteColor
-import com.josecaballero.quoteswithpicture.feature.main.presentation.screen.landing.ColorShades
+import com.josecaballero.quoteswithpicture.feature.main.presentation.screen.randomquote.ColorShades
 
 data class ImageQuoteViewData(
     val textColorA: Color,
