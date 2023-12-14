@@ -2,6 +2,7 @@ package com.josecaballero.quoteswithpicture.feature.main.domain.usecase
 
 import com.josecaballero.quoteswithpicture.feature.main.data.repostory.image.ImageRepo
 import com.josecaballero.quoteswithpicture.feature.main.data.repostory.quote.QuoteRepo
+import com.josecaballero.quoteswithpicture.feature.main.domain.helper.ImageCacheHelper
 import com.josecaballero.quoteswithpicture.feature.main.domain.model.ImageQuoteModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.*
@@ -9,7 +10,8 @@ import javax.inject.Inject
 
 class GetImageQuoteModelUC @Inject constructor(
     private val imageRepo: ImageRepo,
-    private val quoteRepo: QuoteRepo
+    private val quoteRepo: QuoteRepo,
+    private val imageCacheHelper: ImageCacheHelper
 ) {
 
     private var nextImageQuoteModel: ImageQuoteModel? = null
@@ -36,6 +38,7 @@ class GetImageQuoteModelUC @Inject constructor(
             quoteData = quoteData,
             imageData = imageData
         )
+        imageData?.imageUrl?.let { imageCacheHelper.preloadImageIntoCache(imageUrl = it) }
     }
 
     private suspend fun updateNewImageQuoteModelAsync() {

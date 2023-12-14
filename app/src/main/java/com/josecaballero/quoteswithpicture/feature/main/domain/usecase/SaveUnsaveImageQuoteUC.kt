@@ -10,7 +10,10 @@ class SaveUnsaveImageQuoteUC @Inject constructor(private val imageQuoteRepo: Ima
     private var isImageQuoteSaved: Boolean = false
     private var currentImageQuoteModel: ImageQuoteModel? = null
     suspend operator fun invoke(imageQuoteModel: ImageQuoteModel): Boolean {
-        if (currentImageQuoteModel != imageQuoteModel) isImageQuoteSaved = false
+        if (currentImageQuoteModel != imageQuoteModel) {
+            isImageQuoteSaved = false
+            currentImageQuoteModel = imageQuoteModel
+        }
         if (isImageQuoteSaved) {
             imageQuoteRepo.deleteImageQuote(
                 ImageQuoteEntity.from(imageQuoteModel)

@@ -2,7 +2,7 @@ package com.josecaballero.quoteswithpicture.feature.main.domain.helper
 
 import com.josecaballero.quoteswithpicture.feature.main.domain.model.enumerable.ImageQuoteColor
 
-class ImageHelper {
+class ImageColorHelper {
 
     private val defaultBlackOrWhite = ImageQuoteColor.WHITE
     private val defaultColor = ImageQuoteColor.YELLOW_DARK

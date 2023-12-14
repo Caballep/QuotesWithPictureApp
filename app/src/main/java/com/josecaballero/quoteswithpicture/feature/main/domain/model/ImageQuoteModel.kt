@@ -2,7 +2,7 @@ package com.josecaballero.quoteswithpicture.feature.main.domain.model
 
 import com.josecaballero.quoteswithpicture.feature.main.data.repostory.image.ImageData
 import com.josecaballero.quoteswithpicture.feature.main.data.repostory.quote.QuoteData
-import com.josecaballero.quoteswithpicture.feature.main.domain.helper.ImageHelper
+import com.josecaballero.quoteswithpicture.feature.main.domain.helper.ImageColorHelper
 import com.josecaballero.quoteswithpicture.feature.main.domain.model.enumerable.ImageQuoteColor
 
 data class ImageQuoteModel(
@@ -21,16 +21,16 @@ data class ImageQuoteModel(
         fun from(
             quoteData: QuoteData,
             imageData: ImageData?,
-            imageHelper: ImageHelper = ImageHelper()
+            imageColorHelper: ImageColorHelper = ImageColorHelper()
         ) = ImageQuoteModel(
             quoteContent = quoteData.content,
             quoteAuthor = quoteData.author,
-            imageUrl = imageData?.imageUrl ?: imageHelper.getDefaultImageUrl(),
+            imageUrl = imageData?.imageUrl ?: imageColorHelper.getDefaultImageUrl(),
             imageOppositeColors = ImageOppositeColors(
-                blackOrWhiteColor = imageHelper.getContrastingBlackOrWhite(imageData?.averageColorHex),
-                color = imageHelper.getContrastingColor(imageData?.averageColorHex)
+                blackOrWhiteColor = imageColorHelper.getContrastingBlackOrWhite(imageData?.averageColorHex),
+                color = imageColorHelper.getContrastingColor(imageData?.averageColorHex)
             ),
-            imagePhotographer = imageData?.photographer ?: imageHelper.getDefaultImagePhotographer()
+            imagePhotographer = imageData?.photographer ?: imageColorHelper.getDefaultImagePhotographer()
         )
     }
 }

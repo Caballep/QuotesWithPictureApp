@@ -31,21 +31,7 @@ fun DisplayImageQuote(
         modifier = Modifier
             .fillMaxSize(),
     ) {
-        val painter = rememberImagePainter(
-            data = imageQuoteData.imageUrl,
-            builder = {
-                crossfade(true)
-                placeholder(R.drawable.ic_launcher_foreground)
-            }
-        )
-        Image(
-            painter = painter,
-            contentDescription = "Image for the quote",
-            modifier = Modifier
-                .fillMaxSize(),
-            contentScale = ContentScale.Crop
-        )
-
+        DisplayCachedImage(imageUrl = imageQuoteData.imageUrl)
         Column(
             modifier = Modifier
                 .fillMaxSize()
